@@ -22,7 +22,10 @@ const ICONS = {
   leaf: <path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15M5 19c3-5 6-8 10-10" />,
   arrowUp: <path d="M12 19V5M6 11l6-6 6 6" />,
   arrowRight: <path d="M5 12h14M13 6l6 6-6 6" />,
-  folder: <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+  folder: <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />,
+  plus: <path d="M12 5v14M5 12h14" />,
+  link: <><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1" /><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" /></>,
+  chevronDown: <path d="m6 9 6 6 6-6" />
 };
 
 function Icon({ name, size = 20, fill = "none" }) {
@@ -102,9 +105,17 @@ function StatusPill({ status }) {
   return <span className={"pill pill-" + status.toLowerCase().replace(" ", "-")}>{status}</span>;
 }
 
-function ApplicationRow({ application }) {
+// onOpen est optionnel : sans lui (ex. page Home), la ligne n'est pas cliquable.
+function ApplicationRow({ application, onOpen }) {
+  const clickable = Boolean(onOpen);
   return (
-    <div className="row">
+    <div
+      className={"row" + (clickable ? " clickable" : "")}
+      role={clickable ? "button" : undefined}
+      tabIndex={clickable ? 0 : undefined}
+      onClick={clickable ? () => onOpen(application.id) : undefined}
+      onKeyDown={clickable ? (e) => { if (e.key === "Enter") onOpen(application.id); } : undefined}
+    >
       <Logo company={application.company} size={46} />
       <div className="row-main">
         <strong>{application.role}</strong>

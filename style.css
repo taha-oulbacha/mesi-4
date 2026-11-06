@@ -250,3 +250,100 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+/* ---------- Applications : recherche, lignes cliquables, offres enregistrées ---------- */
+.row.clickable { cursor: pointer; transition: border-color .15s; }
+.row.clickable:hover { border-color: rgba(74, 222, 157, .4); }
+button.row { width: 100%; margin-top: 14px; text-align: left; color: var(--accent); }
+.saved-link .row-main strong { color: var(--text); }
+.pill-saved { background: rgba(255, 255, 255, .07); color: #c4d4cb; border: 1px solid var(--line); }
+.topbar-actions .icon-btn .icon { display: block; }
+
+/* ---------- Détail d'une candidature ---------- */
+.app-head { display: flex; align-items: flex-start; gap: 14px; }
+.app-head-main { min-width: 0; }
+.app-head .detail-title { margin: 0 0 4px; font-size: 24px; }
+.app-head .detail-meta { margin-top: 10px; }
+
+.status-card {
+  margin-top: 18px; padding: 14px; border-radius: 18px;
+  border: 1px solid rgba(74, 222, 157, .35);
+  background: radial-gradient(90% 120% at 100% 0%, rgba(74, 222, 157, .22), transparent 70%), var(--card);
+}
+.status-card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 15px; }
+.status-select {
+  position: relative; display: flex; align-items: center;
+  border-radius: 99px; background: var(--accent); color: #04130d;
+}
+.status-select select {
+  appearance: none; -webkit-appearance: none; padding: 7px 28px 7px 14px;
+  border: 0; border-radius: 99px; background: transparent; color: inherit; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+}
+.status-select select option { color: #111; }
+.status-select .icon { position: absolute; right: 10px; pointer-events: none; }
+.status-next { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; }
+
+.section-title { margin: 22px 0 12px; font-size: 18px; font-weight: 700; }
+
+.timeline { margin: 0; padding: 0; list-style: none; }
+.timeline li { position: relative; display: flex; align-items: flex-start; gap: 12px; padding-bottom: 18px; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li:not(:last-child)::before {
+  content: ""; position: absolute; left: 10px; top: 24px; bottom: 2px; width: 2px; background: var(--line);
+}
+.timeline li.done:not(:last-child)::before { background: var(--accent); opacity: .6; }
+.timeline-dot {
+  width: 22px; height: 22px; flex: none; display: grid; place-items: center;
+  border: 2px solid var(--line); border-radius: 50%; color: #04130d;
+}
+.timeline-dot.on { background: var(--accent); border-color: var(--accent); }
+.timeline-main { display: grid; gap: 3px; flex: 1; min-width: 0; font-size: 15px; }
+.timeline-main .muted { font-size: 13px; }
+.timeline li:not(.done) .timeline-main strong { color: var(--muted); font-weight: 500; }
+.timeline li.current .timeline-main strong { color: var(--accent); }
+.timeline-date { font-size: 13px; white-space: nowrap; }
+
+.next-card { display: flex; gap: 12px; margin-top: 18px; }
+.next-icon { width: 40px; height: 40px; flex: none; display: grid; place-items: center; border-radius: 12px; background: rgba(255, 255, 255, .06); color: var(--muted); }
+.next-main { display: grid; gap: 4px; min-width: 0; font-size: 15px; }
+.next-main .muted { font-size: 13px; }
+
+.doc-icon { width: 42px; height: 42px; flex: none; display: grid; place-items: center; border-radius: 12px; background: #e8ece9; color: #1b2a22; }
+
+/* ---------- Formulaire d'ajout ---------- */
+.form { display: grid; gap: 16px; padding: 16px; }
+.field { display: grid; gap: 8px; font-size: 14px; font-weight: 600; }
+.input {
+  width: 100%; height: 48px; padding: 0 14px; border: 1px solid var(--line); border-radius: 14px;
+  background: var(--card-2); color: var(--text); font-size: 15px; font-weight: 400; color-scheme: dark;
+}
+.input::placeholder { color: #566a60; }
+.input:focus { outline: 0; border-color: rgba(74, 222, 157, .6); }
+.input.invalid { border-color: var(--bad); }
+.select-wrap { position: relative; }
+.select-wrap select { appearance: none; -webkit-appearance: none; padding-right: 38px; }
+.select-wrap .icon { position: absolute; right: 14px; top: 16px; pointer-events: none; color: var(--muted); }
+
+.sources { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.source {
+  display: grid; justify-items: center; align-content: center; gap: 6px; min-height: 74px; padding: 8px 4px;
+  border: 1px solid var(--line); border-radius: 14px; background: var(--card-2); color: #c4d4cb; font-size: 12px; font-weight: 500; text-align: center;
+}
+.source.on { border-color: rgba(74, 222, 157, .7); background: var(--accent-soft); color: var(--text); }
+.source-mark { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: var(--sky); color: #04130d; font-size: 14px; font-weight: 800; }
+
+.file-pick {
+  position: relative; display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 14px;
+  border: 1px solid var(--line); border-radius: 14px; background: var(--card-2); color: var(--muted); font-size: 15px; font-weight: 400; cursor: pointer;
+}
+.file-pick .file-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-pick input { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; }
+.form-error { color: var(--bad); font-size: 13px; font-weight: 500; }
+
+/* ---------- Offres enregistrées ---------- */
+.saved-card { align-items: center; }
+.saved-card .job-main { padding-right: 0; }
+.saved-card .bookmark { top: 10px; right: 10px; }
+.saved-card .ring { margin-right: 22px; }
+.deadline { display: flex; align-items: center; gap: 5px; color: var(--muted); font-size: 12px; }
+.deadline.urgent { color: var(--bad); }
